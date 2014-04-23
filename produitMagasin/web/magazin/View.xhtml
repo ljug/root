@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MagazinViewDlg" widgetVar="MagazinViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMagazinTitle}">
+            <h:form id="MagazinViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{magazinController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMagazinLabel_idMagazin}"/>
+                        <h:outputText value="#{magazinController.selected.idMagazin}" title="#{bundle.ViewMagazinTitle_idMagazin}"/>
+                        <h:outputText value="#{bundle.ViewMagazinLabel_nom}"/>
+                        <h:outputText value="#{magazinController.selected.nom}" title="#{bundle.ViewMagazinTitle_nom}"/>
+                        <h:outputText value="#{bundle.ViewMagazinLabel_commentaires}"/>
+                        <h:outputText value="#{magazinController.selected.commentaires}" title="#{bundle.ViewMagazinTitle_commentaires}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MagazinViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

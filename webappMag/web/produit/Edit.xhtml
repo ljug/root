@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditProduitTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditProduitLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{produitController.selected.id}" title="#{bundle.EditProduitTitle_id}" required="true" requiredMessage="#{bundle.EditProduitRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditProduitLabel_reference}" for="reference" />
+                    <h:inputText id="reference" value="#{produitController.selected.reference}" title="#{bundle.EditProduitTitle_reference}" required="true" requiredMessage="#{bundle.EditProduitRequiredMessage_reference}"/>
+                    <h:outputLabel value="#{bundle.EditProduitLabel_description}" for="description" />
+                    <h:inputTextarea rows="4" cols="30" id="description" value="#{produitController.selected.description}" title="#{bundle.EditProduitTitle_description}" required="true" requiredMessage="#{bundle.EditProduitRequiredMessage_description}"/>
+                    <h:outputLabel value="#{bundle.EditProduitLabel_qt}" for="qt" />
+                    <h:inputText id="qt" value="#{produitController.selected.qt}" title="#{bundle.EditProduitTitle_qt}" required="true" requiredMessage="#{bundle.EditProduitRequiredMessage_qt}"/>
+                    <h:outputLabel value="#{bundle.EditProduitLabel_idMag}" for="idMag" />
+                    <h:selectOneMenu id="idMag" value="#{produitController.selected.idMag}" title="#{bundle.EditProduitTitle_idMag}" required="true" requiredMessage="#{bundle.EditProduitRequiredMessage_idMag}">
+                        <f:selectItems value="#{magasinController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{produitController.update}" value="#{bundle.EditProduitSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditProduitViewLink}"/>
+                <br />
+                <h:commandLink action="#{produitController.prepareList}" value="#{bundle.EditProduitShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditProduitIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
