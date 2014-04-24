@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MagazinCreateDlg" widgetVar="MagazinCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMagazinTitle}">
+            <h:form id="MagazinCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{magazinController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMagazinLabel_idMagazin}" for="idMagazin" />
+                        <p:inputText id="idMagazin" value="#{magazinController.selected.idMagazin}" title="#{bundle.CreateMagazinTitle_idMagazin}" required="true" requiredMessage="#{bundle.CreateMagazinRequiredMessage_idMagazin}"/>
+                        <p:outputLabel value="#{bundle.CreateMagazinLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{magazinController.selected.nom}" title="#{bundle.CreateMagazinTitle_nom}" required="true" requiredMessage="#{bundle.CreateMagazinRequiredMessage_nom}"/>
+                        <p:outputLabel value="#{bundle.CreateMagazinLabel_commentaires}" for="commentaires" />
+                        <p:inputTextarea rows="4" cols="30" id="commentaires" value="#{magazinController.selected.commentaires}" title="#{bundle.CreateMagazinTitle_commentaires}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{magazinController.create}" value="#{bundle.Save}" update="display,:MagazinListForm:datalist,:growl" oncomplete="handleSubmit(args,'MagazinCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MagazinCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
